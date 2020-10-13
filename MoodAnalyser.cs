@@ -20,11 +20,23 @@ namespace MoodAnalyserProgram
 
         public string AnalyseMood()
         {
-            if (this.message.ToUpper().Contains("SAD"))
-            {   
-            return "SAD";
-            }             
-            return "HAPPY";
+            try
+            {
+                if(this.message.Equals(""))
+                {
+                    throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.EMPTY, "MOOD SHOULD NOT BE EMPTY");
+                }
+                else if (this.message.ToUpper().Contains("SAD"))
+                {
+                    return "SAD";
+                }
+                else
+                    return "HAPPY";
+            }
+            catch(NullReferenceException)
+            {
+                throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NULL,"MOOD SHOULD NOT BE NULL");
+            }
         }
     }
 }
