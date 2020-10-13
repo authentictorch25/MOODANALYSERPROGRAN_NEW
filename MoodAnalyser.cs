@@ -26,7 +26,7 @@ namespace MoodAnalyserProgram
                 {
                     throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.EMPTY, "MOOD SHOULD NOT BE EMPTY");
                 }
-                if (this.message.ToUpper().Contains("SAD"))
+                else if (this.message.ToUpper().Contains("SAD"))
                 {
                     return "SAD";
                 }

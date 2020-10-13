@@ -8,8 +8,9 @@ namespace MoodAnalyserProgram
         {
             Console.WriteLine("MOOD ANALYSER PROGRAM");
             string message = "i am very sad";
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
+            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
             Console.WriteLine("MOOD : {0}", moodAnalyser.AnalyseMood());
+
         }
     }
 }
