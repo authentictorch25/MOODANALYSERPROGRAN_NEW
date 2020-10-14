@@ -66,5 +66,24 @@ namespace MoodAnalyserProgram
                 throw ex.InnerException;
             }
         }
+        public static object SetField(MoodAnalyser moodAnalyzer, string fieldName, string newMessage)
+        {
+            try
+            {
+                // Meta information of MoodAnalyzer
+                var moodAnalyzerType = typeof(MoodAnalyser);
+                // Meta information of messageField 
+                //GetField Returns an object that represents the field with the specified name, if found; otherwise, null.
+                var messageField = moodAnalyzerType.GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
+                messageField.SetValue(moodAnalyzer, newMessage);
+                return moodAnalyzer;
+            }
+            catch (NullReferenceException)
+            {
+                // GetField returns null incase no field is found with given fieldName
+                // SetValue method will throw exception
+                throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "No such method found");
+            }
+        }
     }
 }
